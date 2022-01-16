@@ -24,11 +24,22 @@ public class ReservationRest {
 	@JsonProperty("shiftId")
 	private Long shiftId;
 
+	@JsonProperty("reservationId")
+	private Long reservationId;
+
 	@JsonProperty("shift")
 	private List<ShiftRest> shifts;
 
 	public String getLocator() {
 		return locator;
+	}
+	
+	public Long getReservationId() {
+		return reservationId;
+	}
+
+	public void setReservationId(Long reservationId) {
+		this.reservationId = reservationId;
 	}
 
 	public void setLocator(String locator) {

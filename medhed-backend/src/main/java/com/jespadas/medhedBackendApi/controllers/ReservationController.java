@@ -42,6 +42,17 @@ public class ReservationController {
 				reservationService.createReservation(createReservationRest));
 	}
 
+	/*
+	 * @ResponseStatus(HttpStatus.OK)
+	 * 
+	 * @RequestMapping(value = "reservation", method = RequestMethod.PUT, produces =
+	 * MediaType.APPLICATION_JSON_VALUE) public ReservationResponse<String>
+	 * updateReservation(@RequestBody CreateReservationRest createReservationRest)
+	 * throws ReservationException { return new ReservationResponse<>("Succes",
+	 * String.valueOf(HttpStatus.OK), "OK",
+	 * reservationService.createReservation(createReservationRest)); }
+	 */
+
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "reservations", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ReservationResponse<List<ReservationRest>> getReservations() throws ReservationException {

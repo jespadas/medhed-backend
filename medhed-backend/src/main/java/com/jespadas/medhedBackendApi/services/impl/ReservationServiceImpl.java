@@ -45,9 +45,38 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationRepository reservationRepository;
 
-	// TODO getReservationById(Long reservationId)
 	public ReservationRest getReservationById(Long reservationId) throws ReservationException {
 		return modelMapper.map(getReservationEntity(reservationId), ReservationRest.class);
+	}
+
+	public String updateReservation(CreateReservationRest createReservationRest) throws ReservationException {
+		final Hospital hospitalId = hospitalRepository.findById(createReservationRest.getHospitalId())
+				.orElseThrow(() -> new NotFoundException("HOSPITAL_NOT_FOUND", "HOSPITAL_NOT_FOUND"));
+
+		final Shift shift = shiftRepository.findById(createReservationRest.getShiftId())
+				.orElseThrow(() -> new NotFoundException("SHIFT_NOT_FOUND", "SHIFT_NOT_FOUND"));
+
+		if (reservationRepository.findByShiftAndHospital(shift.getName(), hospitalId.getId()).isPresent()) {
+			throw new NotFoundException("RESERVATION_ALREADY_EXISTS", "RESERVATION_ALREADY_EXISTS");
+		}
+
+		String locator = generateLocator(hospitalId, createReservationRest);
+
+		final Reservation reservation = new Reservation();
+		reservation.setLocator(locator);
+		reservation.setPatient(createReservationRest.getPatient());
+		reservation.setDate(createReservationRest.getDate());
+		reservation.setHospital(hospitalId);
+		reservation.setShift(shift.getName());
+
+		try {
+			reservationRepository.save(reservation);
+		} catch (Exception e) {
+			LOGGER.error("INTERNAL_SERVER_ERROR", e);
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "INTERNAL_SERVER_ERROR");
+		}
+
+		return locator;
 	}
 
 	private Reservation getReservationEntity(Long reservationId) throws ReservationException {

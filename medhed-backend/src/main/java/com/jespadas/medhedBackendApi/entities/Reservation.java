@@ -28,7 +28,7 @@ public class Reservation {
 	private String locator;
 
 	@Column(name = "SHIFT")
-	private String shift;
+	private Long shift;
 
 	@Column(name = "PATIENT")
 	private Long patient;
@@ -83,11 +83,11 @@ public class Reservation {
 		this.hospital = hospital;
 	}
 
-	public String getShift() {
+	public Long getShift() {
 		return shift;
 	}
 
-	public void setShift(String shift) {
+	public void setShift(Long shift) {
 		this.shift = shift;
 	}
 

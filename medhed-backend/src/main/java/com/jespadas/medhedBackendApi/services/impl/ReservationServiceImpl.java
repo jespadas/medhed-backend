@@ -56,7 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
 		final Shift shift = shiftRepository.findById(createReservationRest.getShiftId())
 				.orElseThrow(() -> new NotFoundException("SHIFT_NOT_FOUND", "SHIFT_NOT_FOUND"));
 
-		if (reservationRepository.findByShiftAndHospital(shift.getName(), hospitalId.getId()).isPresent()) {
+		if (reservationRepository.findByShiftAndHospital(shift.getId(), hospitalId.getId()).isPresent()) {
 			throw new NotFoundException("RESERVATION_ALREADY_EXISTS", "RESERVATION_ALREADY_EXISTS");
 		}
 
@@ -67,7 +67,7 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setPatient(createReservationRest.getPatient());
 		reservation.setDate(createReservationRest.getDate());
 		reservation.setHospital(hospitalId);
-		reservation.setShift(shift.getName());
+		reservation.setShift(shift.getId());
 
 		try {
 			reservationRepository.save(reservation);
@@ -98,7 +98,7 @@ public class ReservationServiceImpl implements ReservationService {
 		final Shift shift = shiftRepository.findById(createReservationRest.getShiftId())
 				.orElseThrow(() -> new NotFoundException("SHIFT_NOT_FOUND", "SHIFT_NOT_FOUND"));
 
-		if (reservationRepository.findByShiftAndHospital(shift.getName(), hospitalId.getId()).isPresent()) {
+		if (reservationRepository.findByShiftAndHospital(shift.getId(), hospitalId.getId()).isPresent()) {
 			throw new NotFoundException("RESERVATION_ALREADY_EXISTS", "RESERVATION_ALREADY_EXISTS");
 		}
 
@@ -109,7 +109,7 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setPatient(createReservationRest.getPatient());
 		reservation.setDate(createReservationRest.getDate());
 		reservation.setHospital(hospitalId);
-		reservation.setShift(shift.getName());
+		reservation.setShift(shift.getId());
 
 		try {
 			reservationRepository.save(reservation);

@@ -21,6 +21,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	@Transactional
 	Optional<Reservation> deleteByLocator(String locator);
 	
-	Optional<Reservation> findByShiftAndHospital(String shift, Long hospitalId);
+	Optional<Reservation> findByShiftAndHospital(Long shift, Long hospitalId);
 
 }

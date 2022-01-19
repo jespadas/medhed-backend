@@ -15,7 +15,7 @@ import com.jespadas.medhedBackendApi.responses.ReservationResponse;
 import com.jespadas.medhedBackendApi.services.CancelReservationService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/reservation-hospital" + "/v1")
 public class CancelReservationController {
 

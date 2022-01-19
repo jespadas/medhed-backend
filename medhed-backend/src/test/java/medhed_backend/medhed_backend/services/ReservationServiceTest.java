@@ -31,7 +31,7 @@ public class ReservationServiceTest {
 	private static final Long PATIENT = 1L;
 	private static final Long SHIFT_ID = 1L;
 	private static final String LOCATOR = "Hôpital Garonne/1986";
-	private static final String SHIFTNAME = "NUIT_23_00-7_00";
+	private static final Long SHIFTNAME = 1L;
 
 	private static final String NAME = "Hospital Purpan";
 	private static final String DESCRIPTION = "Hospital Purpan description";
@@ -109,7 +109,7 @@ public class ReservationServiceTest {
 	public void createReservationTest() throws ReservationException {
 		Mockito.when(hospitalRepository.findById(HOSPITAL_ID)).thenReturn(OPTIONAL_HOSPITAL);
 		Mockito.when(shiftRepository.findById(SHIFT_ID)).thenReturn(OPTIONAL_SHIFT);
-		Mockito.when(reservationRepository.findByShiftAndHospital(SHIFT.getName(), HOSPITAL.getId()))
+		Mockito.when(reservationRepository.findByShiftAndHospital(SHIFT.getId(), HOSPITAL.getId()))
 				.thenReturn(OPTIONAL_RESERVATION_EMPTY);
 
 		Mockito.when(reservationRepository.save(Mockito.any(Reservation.class))).thenReturn(new Reservation());
@@ -135,7 +135,7 @@ public class ReservationServiceTest {
 	public void createReservationShiftAndHospitalTestError() throws ReservationException {
 		Mockito.when(hospitalRepository.findById(HOSPITAL_ID)).thenReturn(OPTIONAL_HOSPITAL);
 		Mockito.when(shiftRepository.findById(SHIFT_ID)).thenReturn(OPTIONAL_SHIFT);
-		Mockito.when(reservationRepository.findByShiftAndHospital(SHIFT.getName(), HOSPITAL.getId()))
+		Mockito.when(reservationRepository.findByShiftAndHospital(SHIFT.getId(), HOSPITAL.getId()))
 				.thenReturn(OPTIONAL_RESERVATION);
 		reservationServiceImpl.createReservation(CREATE_RESERVATION_REST);
 		fail();
@@ -145,7 +145,7 @@ public class ReservationServiceTest {
 	public void createReservationInternalServerErrorTestErr() throws ReservationException {
 		Mockito.when(hospitalRepository.findById(HOSPITAL_ID)).thenReturn(OPTIONAL_HOSPITAL);
 		Mockito.when(shiftRepository.findById(SHIFT_ID)).thenReturn(OPTIONAL_SHIFT);
-		Mockito.when(reservationRepository.findByShiftAndHospital(SHIFT.getName(), HOSPITAL.getId()))
+		Mockito.when(reservationRepository.findByShiftAndHospital(SHIFT.getId(), HOSPITAL.getId()))
 				.thenReturn(OPTIONAL_RESERVATION_EMPTY);
 		Mockito.doThrow(Exception.class).when(reservationRepository).save(Mockito.any(Reservation.class));
 		reservationServiceImpl.createReservation(CREATE_RESERVATION_REST);

@@ -1,6 +1,10 @@
+# Status
+
+[![Java CI](https://github.com/jespadas/medhed-backend/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/jespadas/medhed-backend/actions/workflows/maven-publish.yml)
+
 # Getting Started
 
-This project was bootstrapped with [Spring Tool Suite](https://spring.io/tools).
+This project was made with [Spring Tool Suite](https://spring.io/tools).
 
 ## Available Scripts
 

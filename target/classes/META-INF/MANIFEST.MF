@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: julio
+Build-Jdk: 17
+Implementation-Title: 
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.medhed
+Implementation-URL: http://www.julioespadas.com
+Created-By: Maven Integration for Eclipse
+
